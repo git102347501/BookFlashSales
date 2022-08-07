@@ -32,7 +32,7 @@ export class FlashSalePlanService {
     { apiName: this.apiName });
 
   getList = (input: FlashSalePlanGetListInput) =>
-    this.restService.request<FlashSalePlanGetListInput, PagedResultDto<FlashSalePlanDto>>({
+    this.restService.request<any, PagedResultDto<FlashSalePlanDto>>({
       method: 'GET',
       url: '/api/e-shop/plugins/flash-sales/flash-sale-plan',
       params: { storeId: input.storeId, productId: input.productId, productSkuId: input.productSkuId, includeUnpublished: input.includeUnpublished, start: input.start, end: input.end, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount, extraProperties: input.extraProperties },

@@ -1,2 +1,3 @@
 import * as Eshop from './eshop';
-export { Eshop };
+import * as PaymentService from './payment-service';
+export { Eshop, PaymentService };

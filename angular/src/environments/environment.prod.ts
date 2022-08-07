@@ -1,6 +1,6 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = 'http://flashsales.easyabp.io/';
+const baseUrl = 'http://flashsales.easyabp.io';
 
 export const environment = {
   production: true,
@@ -10,7 +10,7 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'http://flashsales.easyabp.io/',
+    issuer: 'http://flashsales.easyabp.io',
     redirectUri: baseUrl,
     clientId: 'BookFlashSales_App',
     responseType: 'code',
@@ -19,7 +19,7 @@ export const environment = {
   },
   apis: {
     default: {
-      url: 'http://flashsales.easyabp.io/',
+      url: 'http://flashsales.easyabp.io',
       rootNamespace: 'BookFlashSales',
     },
   },

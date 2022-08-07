@@ -1,12 +1,11 @@
-import type { ExtensibleFullAuditedEntityDto, ExtensibleObject } from '@abp/ng.core';
+import { ExtensibleEntityDto, ExtensibleFullAuditedEntityDto } from '@abp/ng.core';
 import type { FlashSaleResultStatus } from '../flash-sale-result-status.enum';
 
-export interface ExtensiblePagedAndSortedResultRequestDto extends ExtensibleObject {
+export interface ExtensiblePagedAndSortedResultRequestDto extends ExtensibleEntityDto {
   sorting: string;
   skipCount: number;
   maxResultCount: number;
 }
-
 export interface FlashSaleResultDto extends ExtensibleFullAuditedEntityDto<string> {
   storeId?: string;
   planId?: string;

@@ -1,2 +1,4 @@
+import * as Orders from './orders';
+import * as Payments from './payments';
 import * as Plugins from './plugins';
-export { Plugins };
+export { Orders, Payments, Plugins };

@@ -1,14 +1,14 @@
 <div class="register">
   <div class="content">
     <div class="title">
-      ABP群友0元抢书活动
+      {{ orderData ? '您已抢购成功，订单详情' : 'ABP群友0元抢书活动'}}
     </div>
     <div class="user-info">
       <span style="font-weight: 500;margin-right: 6px;">用户:</span>
       <span style="margin-right: 6px">{{(currentUser$ | async).userName}}</span>
       <a (click)="logout()">注销</a>
     </div>
-    <div *ngIf="!loading" (click)="selectMode()" style="position:absolute;right:30px;top: 30px;color:#0c9da2;cursor: pointer;
+    <div *ngIf="!loading" (click)="selectMode(1)" style="position:absolute;right:30px;top: 30px;color:#0c9da2;cursor: pointer;
     text-decoration: underline;">
       查看活动规则
     </div>
@@ -59,11 +59,60 @@
         </div>
       </div>
     </div>
+    <div *ngIf="videMode == 3 && !loading" class="pay">
+      <div>
+        抢购资格成功！
+      </div>
+    </div>
+    <div *ngIf="videMode == 4 && !loading" class="order">
+      <div class="order-info">
+        <div>
+          <span class="label">订单号:</span>
+          <span>{{orderData.orderNumber}}</span>
+        </div>
+        <div>
+          <span class="label">订单状态:</span>
+          <span>{{orderData.orderStatus == 1 ? '等待支付' : orderData.orderStatus == 2 ? '支付完成' : orderData.orderStatus == 3 ? '订单完成': '订单取消'}}</span>
+        </div>
+        <div>
+          <span class="label">订单总价格:</span>
+          <span>{{orderData.productTotalPrice}}</span>
+        </div>
+        <div>
+          <span class="label">发货快递:</span>
+          <span>{{orderData.extraProperties && orderData.extraProperties.expressProvider ? orderData.extraProperties.expressProvider : '暂未发货'}}</span>
+        </div>
+        <div>
+          <span class="label">快递单号:</span>
+          <span>{{orderData.extraProperties &&  orderData.extraProperties.trackingNumber ? orderData.extraProperties.trackingNumber : '暂未发货'}}</span>
+        </div>
+        <div>
+          <span class="label">订单商品({{orderData.orderLines.length}}):</span>
+          <div style="margin-left: 12px; font-size: 14px;" *ngFor="let item of orderData.orderLines">
+            <div>
+              <span class="label">商品名:</span>
+              <span>{{item.productDisplayName}}</span>
+            </div>
+            <div>
+              <span class="label">金额:</span>
+              <span>{{item.totalPrice}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div  *ngIf="!loading" class="operation">
       <button 
       [disabled]="!state"
+      *ngIf="videMode < 3"
       (click)="submitForm()" mat-raised-button color="primary">
         {{!state ? '尚未开始' : '立即抢购'}}
+      </button>
+      <button 
+      [disabled]="!state"
+      *ngIf="orderData && orderData.orderStatus == 1"
+      (click)="payOrder()" mat-raised-button color="primary">
+        立即支付
       </button>
     </div>
   </div>

@@ -1,6 +1,6 @@
-import type { ExtensibleEntityDto, ExtensibleFullAuditedEntityDto, ExtensibleObject } from '@abp/ng.core';
+import type { ExtensibleEntityDto, ExtensibleFullAuditedEntityDto } from '@abp/ng.core';
 
-export interface ExtensiblePagedAndSortedResultRequestDto extends ExtensibleObject {
+export interface ExtensiblePagedAndSortedResultRequestDto extends ExtensibleEntityDto {
   sorting: string;
   skipCount: number;
   maxResultCount: number;
